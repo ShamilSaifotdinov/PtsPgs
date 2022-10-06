@@ -1,0 +1,50 @@
+include "defs.def"
+
+Sub createRegions(ByVal InitTable as string, ByVal FinalTable as string)
+	Dim cntPoints, cntRegions as integer
+	Set Coordsys Table finalTable
+	
+	select * from InitTable into temp
+	
+	Fetch First From temp
+	cntPoints = 0
+	cntRegions = 0
+	Do While Not EOT(temp)
+		cntPoints = cntPoints + 1
+		
+		if not temp.col1 = 0 Then	
+			Dim newRegion As Object		
+			Create Region Into Variable newRegion 0
+			cntRegions = cntRegions + 1
+			
+			Dim startPoint as integer
+			startPoint = temp.col1
+			Print "Начальная точка области: " & startPoint
+			
+			Do
+				cntPoints = cntPoints + 1
+
+'Создания полигонов из точечных объектов
+'				Print temp.col1 & " " & CentroidX(temp.obj) & " " & CentroidY(temp.obj)
+'				Alter Object newRegion Node Add (CentroidX(temp.obj),CentroidY(temp.obj))
+
+'Создания полигонов на основе значений координат из таблиц
+				Print temp.col1 + " " + temp.col2 + " " + temp.col3
+				Alter Object newRegion Node Add (temp.col2, temp.col3)
+'				Alter Object newRegion Node Add (temp.col3, temp.col2) 			'Для геодезических координат
+
+				Fetch Next From temp
+			Loop While not (temp.col1 = startPoint or temp.col1 = 0)
+			
+			Insert Into FinalTable(Object, id) Values (newRegion, startPoint)
+		End if
+		
+		Fetch Rec cntPoints+1 From temp
+	Loop
+	
+	Run Menu Command 304 'Сброс выборки (таблицы Selection)
+	Close Table temp
+	
+	Print ""
+	Print "Всего создано областей: " & cntRegions
+End Sub

@@ -1,0 +1,19 @@
+include "defs.def"
+Sub countRows(ByVal tbName as string)		
+	
+	select count(*) from tbName into temp
+	
+	Print " оличество точек в исходной таблице: " + temp.col1
+	
+'	select count(*) from tbName
+'		where ColumnInfo(tbName, "COL1", COL_INFO_NAME) > 0
+'		into temp
+
+	select count(*) from tbName
+		where A > 0				'¬ таблице об€з€тельно должна быть колонка A
+		into temp
+	
+	Print " оличество ненулевых точек в исходной таблице: " + temp.col1
+	
+	Close Table temp
+End Sub

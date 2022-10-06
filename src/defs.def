@@ -1,0 +1,4 @@
+include "mapbasic.def"
+Declare Function selectTable(ByVal tableType as string) as integer
+Declare Sub countRows(ByVal tbName as string)
+Declare Sub createRegions(ByVal InitTable as string, ByVal FinalTable as string)

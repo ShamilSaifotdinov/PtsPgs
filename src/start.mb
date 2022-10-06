@@ -1,0 +1,24 @@
+include "defs.def"
+Declare Sub Main
+Dim InitTable as string
+Dim FinalTable as string
+
+Sub Main
+	Print Chr$(12)
+	
+	InitTable = selectTable("таблицу c точками")
+	Print "Исходная таблица с точками: " & InitTable
+	
+	FinalTable = selectTable("результирующую таблицу")
+	Print "Результирующая таблица с областями: " & FinalTable	
+	
+	Print ""
+	
+	Call countRows(InitTable)
+	
+	Print ""
+	
+	Call createRegions(InitTable, FinalTable)
+	
+	Note "Готовенько!" & Chr$(13) & "Как-то так...)"
+End Sub

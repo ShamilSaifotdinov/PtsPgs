@@ -1,0 +1,6 @@
+[Link]
+Application = PtsPgs.mbx
+Module = start.mbo
+Module = selectTable.mbo
+Module = countRows.mbo
+Module = createRegions.mbo
