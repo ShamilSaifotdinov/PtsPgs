@@ -1,0 +1,16 @@
+!table
+!version 1000
+!charset WindowsCyrillic
+
+Definition Table
+  File "точки.xlsx"
+  Type XLS Range "Лист1!A1:C69"
+  Fields 3
+    A Integer ;
+    B Float ;
+    C Float ;
+begin_metadata
+"\IsReadOnly" = "FALSE"
+"\MapInfo" = ""
+"\MapInfo\TableID" = "bf0d0df5-5d31-4e1e-8856-b6d350494e53"
+end_metadata
